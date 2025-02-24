@@ -1,6 +1,4 @@
-// filepath: /GreenSteps/GreenSteps/server/schemas/resolvers.js
-
-const { User, Habit } = require('../models');
+const { User, Habit, ForumPost } = require('../models');
 const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
@@ -10,6 +8,9 @@ const resolvers = {
     },
     getHabits: async (parent, { userId }) => {
       return Habit.find({ userId });
+    },
+    getForumPosts: async () => {
+      return ForumPost.find().populate('author');
     },
   },
   Mutation: {
@@ -38,7 +39,12 @@ const resolvers = {
     deleteHabit: async (parent, { habitId }) => {
       return Habit.findByIdAndDelete(habitId);
     },
+    addForumPost: async (parent, { title, content, authorId }) => {
+      const forumPost = await ForumPost.create({ title, content, author: authorId });
+      return forumPost.populate('author').execPopulate();
+    },
   },
 };
 
 module.exports = resolvers;
+
