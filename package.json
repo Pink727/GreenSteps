@@ -8,7 +8,9 @@
     "client": "npm start --prefix client",
     "dev": "concurrently \"npm run client\" \"nodemon server/server.js\"",
     "build": "npm run build --prefix client",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "echo \"No tests specified\" && exit 0",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run"
   },
   "keywords": [
     "sustainability",
@@ -17,7 +19,7 @@
     "mern",
     "graphql"
   ],
-  "author": "Your Name",
+  "author": "Pink727",
   "license": "MIT",
   "dependencies": {
     "bcrypt": "^5.0.1",
@@ -31,6 +33,7 @@
     "apollo-server-express": "^2.19.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "cypress": "^9.0.0"
   }
 }
