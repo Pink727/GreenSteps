@@ -10,7 +10,8 @@
     "build": "npm run build --prefix client",
     "test": "echo \"No tests specified\" && exit 0",
     "cypress:open": "cypress open",
-    "cypress:run": "cypress run"
+    "cypress:run": "cypress run",
+    "install": "cd client && npm install && cd server && npm install"
   },
   "keywords": [
     "sustainability",
