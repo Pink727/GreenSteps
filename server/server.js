@@ -1,12 +1,11 @@
+require('dotenv').config();
 const express = require('express');
 const { ApolloServer } = require('apollo-server-express');
 const mongoose = require('mongoose');
-const typeDefs = require('./schemas/typeDefs');
-const resolvers = require('./schemas/resolvers');
+const { typeDefs, resolvers } = require('./schemas');
 const routes = require('./routes');
 const path = require('path');
 const auth = require('./utils/auth');
-require('dotenv').config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;
@@ -14,6 +13,9 @@ const PORT = process.env.PORT || 4000;
 // Middleware
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
+
+// Middleware for authentication
+app.use(auth.verifyToken);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/greensteps', {
@@ -25,9 +27,15 @@ mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/greenstep
 const server = new ApolloServer({
     typeDefs,
     resolvers,
-    context: auth.context,
+    context: ({ req }) => {
+        // Add user to context if authenticated
+        const token = req.headers.authorization || '';
+        const user = auth.getUserFromToken(token);
+        return { user };
+    },
 });
 
+// Apply Apollo GraphQL middleware
 server.applyMiddleware({ app });
 
 // Serve static files from the React app

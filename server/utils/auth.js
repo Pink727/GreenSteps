@@ -1,11 +1,28 @@
 const jwt = require('jsonwebtoken');
 const bcrypt = require('bcrypt');
-const secret = 'your_jwt_secret'; // Replace with your actual secret
+require('dotenv').config();
+
+const secret = process.env.JWT_SECRET;
 
 // Function to generate a JWT token
 const signToken = (user) => {
     const payload = { username: user.username, id: user._id };
     return jwt.sign(payload, secret, { expiresIn: '2h' });
+};
+
+// Middleware to verify JWT token
+const verifyToken = (req, res, next) => {
+    const token = req.headers.authorization || '';
+    if (!token) {
+        return res.status(401).json({ message: 'No token provided' });
+    }
+    try {
+        const decoded = jwt.verify(token, secret);
+        req.user = decoded;
+        next();
+    } catch (err) {
+        return res.status(401).json({ message: 'Invalid token' });
+    }
 };
 
 // Function to hash a password
@@ -21,6 +38,7 @@ const comparePassword = async (password, hashedPassword) => {
 
 module.exports = {
     signToken,
+    verifyToken,
     hashPassword,
     comparePassword,
 };
