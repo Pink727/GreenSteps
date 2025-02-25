@@ -1,6 +1,6 @@
 import React from 'react';
 import { Link } from 'react-router-dom';
-import '/Activity.css';
+import './Activity.css';
 
 const Activity: React.FC = () => {
     return (
@@ -36,6 +36,7 @@ const Activity: React.FC = () => {
                 <p>Look at all your rewards for the ____ !</p>
             </section>
         </main>
-
     );
 };
+
+export default Activity;
