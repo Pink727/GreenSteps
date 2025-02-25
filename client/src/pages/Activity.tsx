@@ -5,7 +5,7 @@ import '/Activity.css';
 const Activity: React.FC = () => {
     return (
         <main>
-            {/*activity sectio*/}
+            {/*activity section*/}
             <section className="activity">
             <h1 className="activity-heading"> Activity</h1>
             <p className="activity-paragraph"> Here is all different ways you can contribute to bettering your planet!.</p>
