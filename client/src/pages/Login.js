@@ -1,6 +1,7 @@
 import React, { useState } from 'react';
 import { authenticateUser } from '../utils/API';
 import { setToken } from '../utils/auth';
+import './Login.css';
 
 const Login: React.FC = () => {
     const [username, setUsername] = useState('');
