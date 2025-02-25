@@ -1,0 +1,47 @@
+name: CI
+
+on:
+  push:
+    branches:
+      - main
+
+jobs:
+  test-database-connection:
+    runs-on: ubuntu-latest
+
+    env:
+      MONGODB_URI: ${{ secrets.MONGODB_URI }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+
+      - name: Set up Node.js
+        uses: actions/setup-node@v2
+        with:
+          node-version: '14'
+
+      - name: Install dependencies
+        run: npm install
+
+      - name: Run database connection test
+        run: |
+          node -e "
+          const axios = require('axios');
+          const uri = process.env.MONGODB_URI;
+          const [url, password] = uri.split('@');
+          axios.post(\`\${url}/check-db-connection\`, {
+            password: password
+          })
+          .then(response => {
+            if (response.status === 200 && response.data.includes('Database connection successful') && response.data.includes('Password verified')) {
+              console.log('Database connection and password verification successful');
+            } else {
+              throw new Error('Database connection or password verification failed');
+            }
+          })
+          .catch(error => {
+            console.error('Error:', error);
+            process.exit(1);
+          });
+          "
