@@ -1,6 +1,6 @@
 import React from 'react';
 import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
-import Home from '../pages/Home';
+import Home from '../pages/Home.tsx';
 import Login from '../pages/Login';
 import Profile from '../pages/Profile';
 import ErrorPage from '../pages/ErrorPage';
