@@ -1,4 +1,5 @@
-const { User, ForumPost } = require('./models');
+const { User } = require('../models/User');
+const {ForumPost} = require('../models/ForumPost');
 const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
