@@ -4,20 +4,26 @@ const { AuthenticationError } = require('apollo-server-express');
 
 const resolvers = {
   Query: {
-    getUser: async (parent, { username }) => {
-      return User.findOne({ username });
+    getUser: async (parent, { id }, { models }) => {
+      return models.User.findById(id);
     },
-    getHabits: async (parent, { userId }) => {
-      return Habit.find({ userId });
+    getAllUsers: async (parent, args, { models }) => {
+      return models.User.find();
     },
-    getForumPosts: async () => {
-      return ForumPost.find().populate('author');
+    getHabit: async (parent, { id }, { models }) => {
+      return models.Habit.findById(id);
+    },
+    getAllHabits: async (parent, args, { models }) => {
+      return models.Habit.find();
+    },
+    getForumPosts: async (parent, args, { models }) => {
+      return models.ForumPost.find().populate('author');
     },
   },
   Mutation: {
-    addUser: async (parent, { username, password }) => {
-      const user = await User.create({ username, password });
-      return user;
+    addUser: async (parent, { username, password }, { models }) => {
+      const user = new models.User({ username, password });
+      return user.save();
     },
     login: async (parent, { username, password }) => {
       const user = await User.findOne({ username });
@@ -30,22 +36,22 @@ const resolvers = {
       }
       return user;
     },
-    addHabit: async (parent, { userId, habitData }) => {
-      const habit = await Habit.create({ ...habitData, userId });
-      return habit;
+    addHabit: async (parent, { name, description, frequency, userId }, { models }) => {
+      const habit = new models.Habit({ name, description, frequency, userId });
+      return habit.save();
     },
-    updateHabit: async (parent, { habitId, habitData }) => {
-      return Habit.findByIdAndUpdate(habitId, habitData, { new: true });
+    updateHabit: async (parent, { id, name, description, frequency }, { models }) => {
+      return models.Habit.findByIdAndUpdate(id, { name, description, frequency }, { new: true });
     },
-    deleteHabit: async (parent, { habitId }) => {
-      return Habit.findByIdAndDelete(habitId);
+    deleteHabit: async (parent, { id }, { models }) => {
+      return models.Habit.findByIdAndDelete(id);
     },
-    addForumPost: async (parent, { title, content, authorId }) => {
-      const forumPost = await ForumPost.create({ title, content, author: authorId });
-      return forumPost.populate('author').execPopulate();
+    addForumPost: async (parent, { title, content, authorId }, { models }) => {
+      const forumPost = new models.ForumPost({ title, content, author: authorId });
+      return forumPost.save().then(post => post.populate('author').execPopulate());
     },
   },
 };
 
-module.exports = resolvers;
+export default resolvers;
 
