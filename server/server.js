@@ -2,6 +2,7 @@ import dotenv from 'dotenv';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
+import path from 'path';
 import { typeDefs, resolvers } from './schemas/index.js';
 import router from './routes/index.js';
 import { verifyToken } from './utils/auth.js';
