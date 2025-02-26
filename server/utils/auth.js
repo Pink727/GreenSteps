@@ -36,9 +36,19 @@ const comparePassword = async (password, hashedPassword) => {
     return await bcrypt.compare(password, hashedPassword);
 };
 
+// Function to get user from token
+const getUserFromToken = (token) => {
+    try {
+        return jwt.verify(token, secret);
+    } catch (err) {
+        return null;
+    }
+};
+
 module.exports = {
     signToken,
     verifyToken,
     hashPassword,
     comparePassword,
+    getUserFromToken,
 };

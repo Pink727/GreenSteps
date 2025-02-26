@@ -4,7 +4,7 @@ import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 import { typeDefs, resolvers } from './schemas/index.js';
 import routes from './routes/index.js';
-import { verifyToken, getUserFromToken } from './utils/auth.js';
+import { verifyToken } from './utils/auth.js';
 
 dotenv.config();
 
