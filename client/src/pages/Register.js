@@ -1,27 +1,25 @@
 import React, { useState } from 'react';
-import { authenticateUser } from '../utils/API';
-import { setToken } from '../utils/auth';
-import { Link } from 'react-router-dom';
-import './Login.css';
+import { registerUser } from '../utils/API';
+import './Register.css';
 
-const Login: React.FC = () => {
+const Register: React.FC = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
+    const [email, setEmail] = useState('');
 
     const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
         try {
-            const response = await authenticateUser({ username, password });
-            setToken(response.token);
-            console.log('Login successful');
+            await registerUser({ username, password, email });
+            console.log('Registration successful');
         } catch (error) {
-            console.error('Login failed:', error);
+            console.error('Registration failed:', error);
         }
     };
 
     return (
-        <div className="login-container">
-            <h2>Login</h2>
+        <div className="register-container">
+            <h2>Register</h2>
             <form onSubmit={handleSubmit}>
                 <div>
                     <label htmlFor="username">Username:</label>
@@ -43,11 +41,20 @@ const Login: React.FC = () => {
                         required
                     />
                 </div>
-                <button type="submit">Login</button>
+                <div>
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <button type="submit">Register</button>
             </form>
-            <p>Don't have an account? <Link to="/register">Register</Link></p>
         </div>
     );
 };
 
-export default Login;
+export default Register;
