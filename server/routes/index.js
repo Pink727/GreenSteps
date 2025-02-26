@@ -1,8 +1,7 @@
-// filepath: /GreenSteps/GreenSteps/server/routes/index.js
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const { typeDefs, resolvers } = require('../schemas');
-const auth = require('../utils/auth');
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import { typeDefs, resolvers } from '../schemas/index.js';
+import auth from '../utils/auth.js';
 
 const router = express.Router();
 
@@ -24,5 +23,5 @@ const server = new ApolloServer({
 // Apply Apollo GraphQL middleware
 server.applyMiddleware({ app: router });
 
-// Export the router
-module.exports = router; // Change this line to use default export
+// Export the router as default
+export default router;

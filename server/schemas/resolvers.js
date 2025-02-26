@@ -1,6 +1,6 @@
-const { User } = require('../models/User');
-const {ForumPost} = require('../models/ForumPost');
-const { AuthenticationError } = require('apollo-server-express');
+import { User } from '../models/User.js';
+import { ForumPost } from '../models/ForumPost.js';
+import { AuthenticationError } from 'apollo-server-express';
 
 const resolvers = {
   Query: {

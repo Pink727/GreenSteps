@@ -1,17 +1,19 @@
-const jwt = require('jsonwebtoken');
-const bcrypt = require('bcrypt');
-require('dotenv').config();
+import jwt from 'jsonwebtoken';
+import bcrypt from 'bcrypt';
+import dotenv from 'dotenv';
+
+dotenv.config();
 
 const secret = process.env.JWT_SECRET;
 
 // Function to generate a JWT token
-const signToken = (user) => {
+export const signToken = (user) => {
     const payload = { username: user.username, id: user._id };
     return jwt.sign(payload, secret, { expiresIn: '2h' });
 };
 
 // Middleware to verify JWT token
-const verifyToken = (req, res, next) => {
+export const verifyToken = (req, res, next) => {
     const token = req.headers.authorization || '';
     if (!token) {
         return res.status(401).json({ message: 'No token provided' });
@@ -26,18 +28,18 @@ const verifyToken = (req, res, next) => {
 };
 
 // Function to hash a password
-const hashPassword = async (password) => {
+export const hashPassword = async (password) => {
     const saltRounds = 10;
     return await bcrypt.hash(password, saltRounds);
 };
 
 // Function to compare a password with a hashed password
-const comparePassword = async (password, hashedPassword) => {
+export const comparePassword = async (password, hashedPassword) => {
     return await bcrypt.compare(password, hashedPassword);
 };
 
 // Function to get user from token
-const getUserFromToken = (token) => {
+export const getUserFromToken = (token) => {
     try {
         return jwt.verify(token, secret);
     } catch (err) {
@@ -45,10 +47,12 @@ const getUserFromToken = (token) => {
     }
 };
 
-module.exports = {
+const auth = {
     signToken,
     verifyToken,
     hashPassword,
     comparePassword,
     getUserFromToken,
 };
+
+export default auth;

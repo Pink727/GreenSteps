@@ -1,6 +1,5 @@
-// filepath: /GreenSteps/GreenSteps/server/models/User.js
-const mongoose = require('mongoose');
-const bcrypt = require('bcrypt');
+import mongoose from 'mongoose';
+import bcrypt from 'bcrypt';
 
 const UserSchema = new mongoose.Schema({
     username: {
@@ -35,4 +34,4 @@ UserSchema.methods.isCorrectPassword = async function(password) {
 
 const User = mongoose.model('User', UserSchema);
 
-module.exports = User;
+export { User };

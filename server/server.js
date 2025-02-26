@@ -18,6 +18,9 @@ app.use(express.urlencoded({ extended: true }));
 // Middleware for authentication
 app.use(verifyToken);
 
+// Use the router
+app.use('/api', router);
+
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/greensteps', {
     useNewUrlParser: true,
