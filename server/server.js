@@ -25,11 +25,8 @@ app.use('/favicon.ico', express.static(path.join(__dirname, '../client/build/fav
 // Serve static files from the React app
 app.use(express.static(path.join(__dirname, '../client/build')));
 
-// Middleware for authentication
-app.use(verifyToken);
-
 // Use the router
-app.use('/api', router);
+app.use('/api', verifyToken, router);
 
 // Connect to MongoDB
 const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/greensteps';
