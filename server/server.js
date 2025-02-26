@@ -17,6 +17,11 @@ const PORT = process.env.PORT || 4000;
 app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
+// Serve favicon.ico without authentication
+const __filename = fileURLToPath(import.meta.url);
+const __dirname = path.dirname(__filename);
+app.use('/favicon.ico', express.static(path.join(__dirname, '../client/build/favicon.ico')));
+
 // Middleware for authentication
 app.use(verifyToken);
 
@@ -51,9 +56,6 @@ server.applyMiddleware({ app });
 
 // Serve static files from the React app
 if (process.env.NODE_ENV === 'production') {
-    const __filename = fileURLToPath(import.meta.url);
-    const __dirname = path.dirname(__filename);
-    
     app.use(express.static(path.join(__dirname, '../client/build')));
     
     app.get('*', (req, res) => {
