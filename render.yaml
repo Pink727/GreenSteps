@@ -1,9 +1,20 @@
 services:
   - type: web
-    name: greensteps
+    name: greensteps-client
     env: node
-    buildCommand: npm install && npm run build
-    startCommand: npm start
+    buildCommand: cd client && npm install && npm run build
+    startCommand: cd client && npm start
     envVars:
       - key: NODE_ENV
         value: production
+
+  - type: web
+    name: greensteps-server
+    env: node
+    buildCommand: cd server && npm install
+    startCommand: cd server && npm start
+    envVars:
+      - key: NODE_ENV
+        value: production
+      - key: JWT_SECRET
+        fromDatabase: greensteps-db
