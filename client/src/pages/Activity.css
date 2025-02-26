@@ -1,5 +1,4 @@
 .activity {
-    /* Example CSS rules */
     background-color: #f0f0f0;
     padding: 20px;
 }
@@ -14,9 +13,9 @@
     color: #666;
 }
 
-/* Check for any incorrect usage of '/' or other special characters */
+
 .button {
-    background-color: #4CAF50; /* Green */
+    background-color: #4CAF50; 
     border: none;
     color: white;
     padding: 15px 32px;
