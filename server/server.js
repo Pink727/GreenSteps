@@ -22,6 +22,9 @@ const __filename = fileURLToPath(import.meta.url);
 const __dirname = path.dirname(__filename);
 app.use('/favicon.ico', express.static(path.join(__dirname, '../client/build/favicon.ico')));
 
+// Serve static files from the React app
+app.use(express.static(path.join(__dirname, '../client/build')));
+
 // Middleware for authentication
 app.use(verifyToken);
 
@@ -53,9 +56,6 @@ const server = new ApolloServer({
 
 // Apply Apollo GraphQL middleware
 server.applyMiddleware({ app });
-
-// Serve static files from the React app
-app.use(express.static(path.join(__dirname, '../client/build')));
 
 // Handle all other routes by serving the client-side application
 app.get('*', (req, res) => {
