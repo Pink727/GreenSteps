@@ -3,6 +3,7 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 import path from 'path';
+import { fileURLToPath } from 'url';
 import { typeDefs, resolvers } from './schemas/index.js';
 import router from './routes/index.js';
 import { verifyToken } from './utils/auth.js';
@@ -45,6 +46,9 @@ server.applyMiddleware({ app });
 
 // Serve static files from the React app
 if (process.env.NODE_ENV === 'production') {
+    const __filename = fileURLToPath(import.meta.url);
+    const __dirname = path.dirname(__filename);
+    
     app.use(express.static(path.join(__dirname, '../client/build')));
     
     app.get('*', (req, res) => {
