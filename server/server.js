@@ -11,7 +11,7 @@ import { verifyToken } from './utils/auth.js';
 dotenv.config();
 
 const app = express();
-const PORT = process.env.PORT || 4000;
+const PORT = process.env.PORT || 10000;
 
 // Middleware
 app.use(express.json());
@@ -55,13 +55,12 @@ const server = new ApolloServer({
 server.applyMiddleware({ app });
 
 // Serve static files from the React app
-if (process.env.NODE_ENV === 'production') {
-    app.use(express.static(path.join(__dirname, '../client/build')));
-    
-    app.get('*', (req, res) => {
-        res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
-    });
-}
+app.use(express.static(path.join(__dirname, '../client/build')));
+
+// Handle all other routes by serving the client-side application
+app.get('*', (req, res) => {
+    res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
+});
 
 // Start the server
 app.listen(PORT, () => {
