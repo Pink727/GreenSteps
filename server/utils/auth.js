@@ -36,18 +36,6 @@ const comparePassword = async (password, hashedPassword) => {
     return await bcrypt.compare(password, hashedPassword);
 };
 
-export const getToken = () => {
-    return localStorage.getItem('token');
-};
-
-export const setToken = (token) => {
-    localStorage.setItem('token', token);
-};
-
-export const removeToken = () => {
-    localStorage.removeItem('token');
-};
-
 module.exports = {
     signToken,
     verifyToken,

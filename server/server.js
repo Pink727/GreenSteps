@@ -4,8 +4,7 @@ import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
 import { typeDefs, resolvers } from './schemas/index.js';
 import routes from './routes/index.js';
-import path from 'path';
-import auth from './utils/auth.js';
+import { verifyToken, getUserFromToken } from './utils/auth.js';
 
 dotenv.config();
 
@@ -17,7 +16,7 @@ app.use(express.json());
 app.use(express.urlencoded({ extended: true }));
 
 // Middleware for authentication
-app.use(auth.verifyToken);
+app.use(verifyToken);
 
 // Connect to MongoDB
 mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost:27017/greensteps', {
@@ -32,7 +31,7 @@ const server = new ApolloServer({
     context: ({ req }) => {
         // Add user to context if authenticated
         const token = req.headers.authorization || '';
-        const user = auth.getUserFromToken(token);
+        const user = getUserFromToken(token);
         return { user };
     },
 });
