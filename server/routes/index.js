@@ -25,4 +25,4 @@ const server = new ApolloServer({
 server.applyMiddleware({ app: router });
 
 // Export the router
-module.exports = { router }; // Corrected export statement
+module.exports = router; // Change this line to use default export
