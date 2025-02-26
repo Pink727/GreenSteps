@@ -1,6 +1,10 @@
 import mongoose from 'mongoose';
+import dotenv from 'dotenv';
 
-const connectionString = process.env.MONGODB_URI || 'your_mongodb_atlas_connection_string';
+// Load environment variables from .env file
+dotenv.config();
+
+const connectionString = process.env.MONGODB_URI;
 
 mongoose.connect(connectionString, {
     useNewUrlParser: true,
