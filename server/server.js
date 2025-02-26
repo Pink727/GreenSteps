@@ -1,11 +1,13 @@
-require('dotenv').config();
-const express = require('express');
-const { ApolloServer } = require('apollo-server-express');
-const mongoose = require('mongoose');
-const { typeDefs, resolvers } = require('./schemas');
-const routes = require('./routes');
-const path = require('path');
-const auth = require('./utils/auth');
+import dotenv from 'dotenv';
+import express from 'express';
+import { ApolloServer } from 'apollo-server-express';
+import mongoose from 'mongoose';
+import { typeDefs, resolvers } from './schemas/index.js';
+import routes from './routes/index.js';
+import path from 'path';
+import auth from './utils/auth.js';
+
+dotenv.config();
 
 const app = express();
 const PORT = process.env.PORT || 4000;

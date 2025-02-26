@@ -1,11 +1,10 @@
-// filepath: /GreenSteps/GreenSteps/server/schemas/index.js
-const { gql } = require('apollo-server-express');
-const typeDefs = require('./typeDefs');
-const resolvers = require('./resolvers');
+import { gql } from 'apollo-server-express';
+import typeDefs from './typeDefs.js';
+import resolvers from './resolvers.js';
 
 const schema = {
   typeDefs,
   resolvers,
 };
 
-module.exports = schema;
+export default schema;

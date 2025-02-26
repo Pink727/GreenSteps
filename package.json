@@ -3,6 +3,7 @@
   "version": "1.0.0",
   "description": "A Sustainability & Eco-Friendly Lifestyle Tracker",
   "main": "server/server.js",
+  "type": "module",
   "scripts": {
     "start": "node server/server.js",
     "client": "npm start --prefix client",

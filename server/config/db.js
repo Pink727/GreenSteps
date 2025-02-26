@@ -1,4 +1,4 @@
-const mongoose = require('mongoose');
+import mongoose from 'mongoose';
 
 const connectionString = process.env.MONGODB_URI || 'your_mongodb_atlas_connection_string';
 
@@ -13,4 +13,4 @@ mongoose.connect(connectionString, {
     console.error('MongoDB connection error:', err);
 });
 
-module.exports = mongoose.connection;
+export default mongoose.connection;
