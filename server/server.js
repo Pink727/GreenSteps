@@ -1,12 +1,12 @@
 import dotenv from 'dotenv';
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
-import mongoose from 'mongoose';
 import path from 'path';
 import { fileURLToPath } from 'url';
 import { typeDefs, resolvers } from './schemas/index.js';
 import router from './routes/index.js';
 import { verifyToken } from './utils/auth.js';
+import './config/db.js'; // Import the db.js file to establish the MongoDB connection
 
 dotenv.config();
 
@@ -27,17 +27,6 @@ app.use(express.static(path.join(__dirname, '../client/build')));
 
 // Use the router
 app.use('/api', verifyToken, router);
-
-// Connect to MongoDB
-const mongoUri = process.env.MONGODB_URI || 'mongodb://localhost:27017/greensteps';
-mongoose.connect(mongoUri, {
-    useNewUrlParser: true,
-    useUnifiedTopology: true,
-}).then(() => {
-    console.log('Connected to MongoDB');
-}).catch((err) => {
-    console.error('Error connecting to MongoDB:', err.message);
-});
 
 // Apollo Server setup
 const server = new ApolloServer({
