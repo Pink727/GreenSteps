@@ -7,7 +7,7 @@ dotenv.config();
 const username = process.env.MONGODB_USERNAME;
 const password = process.env.MONGODB_PASSWORD;
 const cluster = process.env.MONGODB_CLUSTER;
-const connectionString = `mongodb+srv://${username}:${password}@${cluster}/?retryWrites=true&w=majority`;
+const connectionString = `mongodb+srv://${username}:${password}@${cluster}/myDatabase?retryWrites=true&w=majority`;
 
 mongoose.connect(connectionString, {
     useNewUrlParser: true,
