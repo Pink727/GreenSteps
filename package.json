@@ -2,12 +2,12 @@
   "name": "greensteps",
   "version": "1.0.0",
   "description": "A Sustainability & Eco-Friendly Lifestyle Tracker",
-  "main": "server/server.js",
+  "main": "server/src/server.ts",
   "type": "module",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "ts-node server/src/server.ts",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run client\" \"nodemon server/server.js\"",
+    "dev": "concurrently \"npm run client\" \"nodemon server/src/server.ts\"",
     "build": "npm run build --prefix client",
     "test": "echo \"No tests specified\" && exit 0",
     "cypress:open": "cypress open",
@@ -36,6 +36,8 @@
   },
   "devDependencies": {
     "cypress": "^9.0.0",
-    "nodemon": "^2.0.7"
+    "nodemon": "^2.0.7",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
   }
 }

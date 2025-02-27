@@ -1,18 +1,18 @@
-describe('Server Connection Test', () => {
-    it('should connect to the server and return a successful response', () => {
-      cy.request('http://localhost:3001') 
-        .then((response) => {
-          expect(response.status).to.eq(200);
-          expect(response.body).to.include('MongoDB connected successfully');
-        });
+describe('Database Connection and User Creation Tests', () => {
+  it('should connect to the database', () => {
+    cy.task('connectToDatabase').then((result) => {
+      expect(result).to.equal('Connected');
     });
+  });
 
-    it('should check the database connection and password', () => {
-      cy.request('http://localhost:3001/check-db-connection')
-        .then((response) => {
-          expect(response.status).to.eq(200);
-          expect(response.body).to.include('Database connection successful');
-          expect(response.body).to.include('Password verified');
-        });
+  it('should create a new user', () => {
+    const newUser = {
+      username: 'testuser',
+      password: 'password123',
+    };
+
+    cy.task('createUser', newUser).then((result) => {
+      expect(result).to.equal('User Created');
     });
+  });
 });
