@@ -7,9 +7,9 @@ import { resolvers } from './resolvers';
 import dotenv from 'dotenv';
 
 // Load environment variables from .env file
-dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
+dotenv.config();
 
-const PORT = 4000; // Define the PORT directly in the file
+const PORT = process.env.PORT || 4000; // Use the PORT from environment variables or default to 4000
 const { MONGODB_URI } = process.env;
 
 console.log('PORT:', PORT);
