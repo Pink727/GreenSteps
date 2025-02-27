@@ -1,6 +1,7 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
+import path from 'path';
 import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
 import dotenv from 'dotenv';
@@ -23,6 +24,9 @@ const server = new ApolloServer({
 
 app.use(express.json());
 
+// Serve static files from the client/build directory
+app.use(express.static(path.join(__dirname, '../../client/build')));
+
 server.start().then(() => {
   server.applyMiddleware({ app });
 
@@ -39,4 +43,9 @@ server.start().then(() => {
     .catch(err => {
       console.error('Database connection error:', err);
     });
+});
+
+// Serve the client-side application for any unknown routes
+app.get('*', (req, res) => {
+  res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
 });
