@@ -7,6 +7,7 @@ import { typeDefs, resolvers } from './schemas/index.js';
 import router from './routes/index.js';
 import { verifyToken } from './utils/auth.js';
 import './config/db.js'; // Import the db.js file to establish the MongoDB connection
+import mongoose from 'mongoose';
 
 dotenv.config();
 
@@ -48,7 +49,17 @@ app.get('*', (req, res) => {
     res.sendFile(path.join(__dirname, '../client/build', 'index.html'));
 });
 
-// Start the server
-app.listen(PORT, () => {
-    console.log(`Server is running on http://localhost:${PORT}${server.graphqlPath}`);
+// Connect to MongoDB and start the server
+mongoose.connect(process.env.MONGODB_URI || 'mongodb://localhost/greensteps', {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+})
+.then(() => {
+    console.log('MongoDB connected');
+    app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}${server.graphqlPath}`);
+    });
+})
+.catch((error) => {
+    console.error('Error connecting to MongoDB:', error); // Debugging: Log MongoDB connection errors
 });

@@ -2,13 +2,14 @@ import React, { useState } from 'react';
 import { registerUser } from '../utils/API';
 import './Register.css';
 
-const Register: React.FC = () => {
+const Register = () => {
     const [username, setUsername] = useState('');
     const [password, setPassword] = useState('');
     const [email, setEmail] = useState('');
 
-    const handleSubmit = async (event: React.FormEvent) => {
+    const handleSubmit = async (event) => {
         event.preventDefault();
+        console.log('Register form submitted'); // Debugging: Log when the form is submitted
         try {
             await registerUser({ username, password, email });
             console.log('Registration successful');
