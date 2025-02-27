@@ -1,5 +1,5 @@
 import { User } from '../models/User.js';
-import { hashPassword, signToken } from '../utils/auth.js';
+import { hashPassword } from '../utils/auth.js'; // Removed signToken import
 
 export const registerUser = async (req, res) => {
     console.log('Register endpoint hit'); // Debugging: Log when the endpoint is hit
@@ -9,8 +9,7 @@ export const registerUser = async (req, res) => {
         const hashedPassword = await hashPassword(password);
         const newUser = new User({ username, password: hashedPassword, email });
         await newUser.save();
-        const token = signToken(newUser);
-        res.status(201).json({ token });
+        res.status(201).json({ message: 'User registered successfully' }); // Removed token from response
     } catch (error) {
         console.error('Error registering user:', error); // Debugging: Log any errors
         res.status(500).json({ message: 'Error registering user', error });
