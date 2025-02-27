@@ -1,34 +1,36 @@
 {
-  "name": "greensteps-server",
+  "name": "server",
   "version": "1.0.0",
-  "description": "Server for GreenSteps project",
-  "main": "server.js",
-  "type": "module",
+  "description": "A TypeScript backend server using GraphQL, Node.js, Express.js, and MongoDB with JWT authentication.",
+  "main": "src/server.ts",
   "scripts": {
-    "start": "node server.js",
-    "dev": "nodemon server.js",
-    "test": "echo \"No tests specified\" && exit 0"
+    "start": "ts-node src/server.ts",
+    "build": "tsc",
+    "dev": "ts-node-dev src/server.ts",
+    "test": "jest"
   },
-  "keywords": [
-    "sustainability",
-    "eco-friendly",
-    "tracker",
-    "mern",
-    "graphql"
-  ],
-  "author": "pink727",
-  "license": "MIT",
   "dependencies": {
-    "bcrypt": "^5.0.1",
-    "cors": "^2.8.5",
+    "bcryptjs": "^2.4.3",
     "dotenv": "^10.0.0",
     "express": "^4.17.1",
     "graphql": "^15.5.0",
+    "graphql-tools": "^8.2.0",
     "jsonwebtoken": "^8.5.1",
     "mongoose": "^5.10.9",
     "apollo-server-express": "^2.19.0"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
-  }
+    "@types/bcryptjs": "^2.4.2",
+    "@types/express": "^4.17.11",
+    "@types/jest": "^26.0.24",
+    "@types/jsonwebtoken": "^8.5.0",
+    "@types/mongoose": "^5.10.3",
+    "ts-node": "^10.0.0",
+    "ts-node-dev": "^1.1.8",
+    "typescript": "^4.3.2",
+    "jest": "^27.0.6"
+  },
+  "keywords": [],
+  "author": "Pink727",
+  "license": "ISC"
 }
