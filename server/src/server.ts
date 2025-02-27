@@ -10,7 +10,7 @@ import dotenv from 'dotenv';
 dotenv.config();
 
 const PORT = process.env.PORT || 4000; // Use the PORT from environment variables or default to 4000
-const { MONGODB_URI } = process.env;
+const MONGODB_URI = process.env.MONGODB_URI;
 
 console.log('PORT:', PORT);
 console.log('MONGODB_URI:', MONGODB_URI);
