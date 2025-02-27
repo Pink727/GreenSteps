@@ -8,7 +8,9 @@ const server = new ApolloServer({ typeDefs, resolvers });
 
 server.applyMiddleware({ app });
 
-const PORT = process.env.PORT || 4000;
+export const PORT = process.env.PORT || 4000;
+export const MONGODB_URI = process.env.MONGODB_URI || 'your_mongodb_uri';
+
 app.listen(PORT, () => {
     console.log(`Server is running on http://localhost:${PORT}${server.graphqlPath}`);
 });
