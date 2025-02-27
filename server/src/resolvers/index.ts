@@ -1,4 +1,4 @@
-import { IResolvers } from 'graphql-tools';
+import { IResolvers } from '@graphql-tools/utils';
 import { AuthController } from '../controllers/authController';
 import { UserController } from '../controllers/userController';
 
