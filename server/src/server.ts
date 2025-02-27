@@ -1,9 +1,17 @@
 import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import mongoose from 'mongoose';
-import { typeDefs } from './schemas';
+import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
-import { PORT, MONGODB_URI } from './config';
+import dotenv from 'dotenv';
+
+// Load environment variables from .env file
+dotenv.config({ path: __dirname + '/../.env' });
+
+const { PORT, MONGODB_URI } = process.env;
+
+console.log('PORT:', PORT);
+console.log('MONGODB_URI:', MONGODB_URI);
 
 const app = express();
 
@@ -14,14 +22,16 @@ const server = new ApolloServer({
 
 app.use(express.json());
 
-server.applyMiddleware({ app });
+server.start().then(() => {
+  server.applyMiddleware({ app });
 
-mongoose.connect(MONGODB_URI, { useNewUrlParser: true, useUnifiedTopology: true })
-  .then(() => {
-    app.listen(PORT, () => {
-      console.log(`Server is running on http://localhost:${PORT}${server.graphqlPath}`);
+  mongoose.connect(MONGODB_URI!, { useNewUrlParser: true, useUnifiedTopology: true })
+    .then(() => {
+      app.listen(PORT, () => {
+        console.log(`Server is running on http://localhost:${PORT}${server.graphqlPath}`);
+      });
+    })
+    .catch(err => {
+      console.error('Database connection error:', err);
     });
-  })
-  .catch(err => {
-    console.error('Database connection error:', err);
-  });
+});

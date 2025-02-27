@@ -1,3 +1,5 @@
+export { IUser } from '../models/userModel';
+
 export interface User {
     id: string;
     username: string;
