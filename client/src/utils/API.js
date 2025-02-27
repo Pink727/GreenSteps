@@ -60,44 +60,15 @@ export const registerUser = async (userData) => {
         return response.data;
     } catch (error) {
         if (error.response) {
-            // The request was made and the server responded with a status code
-            // that falls out of the range of 2xx
             console.error('Error response data:', error.response.data); // Debugging: Log the error response data
             console.error('Error response status:', error.response.status); // Debugging: Log the error response status
             console.error('Error response headers:', error.response.headers); // Debugging: Log the error response headers
         } else if (error.request) {
-            // The request was made but no response was received
             console.error('Error request:', error.request); // Debugging: Log the error request
         } else {
-            // Something happened in setting up the request that triggered an Error
             console.error('Error message:', error.message); // Debugging: Log the error message
         }
         console.error('Error config:', error.config); // Debugging: Log the error config
         throw error;
     }
 };
-
-async function registerUser(userData) {
-    try {
-        console.log("Registering user with data:", userData);
-        const response = await fetch('https://greensteps-u62w.onrender.com/api/auth/register', {
-            method: 'POST',
-            headers: {
-                'Content-Type': 'application/json',
-            },
-            body: JSON.stringify(userData),
-        });
-
-        console.log("Response status:", response.status);
-        if (!response.ok) {
-            throw new Error(`HTTP error! status: ${response.status}`);
-        }
-
-        const data = await response.json();
-        console.log("Response data:", data);
-        return data;
-    } catch (error) {
-        console.error("Error registering user:", error);
-        throw error;
-    }
-}
