@@ -9,12 +9,19 @@ const Register = () => {
 
     const handleSubmit = async (event) => {
         event.preventDefault();
-        console.log('Register form submitted'); // Debugging: Log when the form is submitted
+        const userData = {
+            username: event.target.username.value,
+            password: event.target.password.value,
+            email: event.target.email.value,
+        };
+
+        console.log("Submitting form with data:", userData);
+
         try {
-            await registerUser({ username, password, email });
-            console.log('Registration successful');
+            const result = await registerUser(userData);
+            console.log("User registered successfully:", result);
         } catch (error) {
-            console.error('Registration failed:', error);
+            console.error("Error in onSubmit:", error);
         }
     };
 
