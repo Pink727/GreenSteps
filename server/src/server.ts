@@ -15,6 +15,11 @@ const MONGODB_URI = process.env.MONGODB_URI;
 console.log('PORT:', PORT);
 console.log('MONGODB_URI:', MONGODB_URI);
 
+if (!MONGODB_URI) {
+  console.error('MONGODB_URI is not defined. Please set the MONGODB_URI environment variable.');
+  process.exit(1);
+}
+
 const app = express();
 
 const server = new ApolloServer({
@@ -30,7 +35,7 @@ app.use(express.static(path.join(__dirname, '../../client/build')));
 server.start().then(() => {
   server.applyMiddleware({ app });
 
-  mongoose.connect(MONGODB_URI!, {
+  mongoose.connect(MONGODB_URI, {
     useNewUrlParser: true,
     useUnifiedTopology: true,
     useCreateIndex: true, // Use createIndex instead of ensureIndex
