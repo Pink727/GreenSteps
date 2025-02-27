@@ -1,5 +1,5 @@
 import { Router } from 'express';
-import { registerUser } from '../controllers/authController';
+import { registerUser } from '../controllers/authController.js'; // Corrected the import path
 
 const router = Router();
 
