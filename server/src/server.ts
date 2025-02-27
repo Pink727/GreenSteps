@@ -9,7 +9,7 @@ const app = express();
 
 const server = new ApolloServer({
   typeDefs,
-  resolvers,
+  resolvers: resolvers as any, // Ensure the resolvers are cast to any to avoid type issues
 });
 
 app.use(express.json());
