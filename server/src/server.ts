@@ -8,7 +8,8 @@ import dotenv from 'dotenv';
 // Load environment variables from .env file
 dotenv.config({ path: __dirname + '/../.env' });
 
-const { PORT, MONGODB_URI } = process.env;
+const PORT = 4000; // Define the PORT directly in the file
+const { MONGODB_URI } = process.env;
 
 console.log('PORT:', PORT);
 console.log('MONGODB_URI:', MONGODB_URI);
@@ -25,7 +26,11 @@ app.use(express.json());
 server.start().then(() => {
   server.applyMiddleware({ app });
 
-  mongoose.connect(MONGODB_URI!, { useNewUrlParser: true, useUnifiedTopology: true })
+  mongoose.connect(MONGODB_URI!, {
+    useNewUrlParser: true,
+    useUnifiedTopology: true,
+    useCreateIndex: true, // Use createIndex instead of ensureIndex
+  })
     .then(() => {
       app.listen(PORT, () => {
         console.log(`Server is running on http://localhost:${PORT}${server.graphqlPath}`);
