@@ -2,11 +2,15 @@ import express from 'express';
 import { ApolloServer } from 'apollo-server-express';
 import { typeDefs, resolvers } from '../schemas/index.js';
 import auth from '../utils/auth.js';
+import { registerUser } from '../controllers/authController.js';
 
 const router = express.Router();
 
 // Middleware for authentication
 router.use(auth.verifyToken);
+
+// Registration route
+router.post('/auth/register', registerUser);
 
 // Apollo Server setup
 const server = new ApolloServer({
