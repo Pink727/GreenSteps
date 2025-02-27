@@ -1,9 +1,10 @@
-import { MongoClient, ServerApiVersion } from 'mongodb';
+import pkg from 'mongodb';
 import dotenv from 'dotenv';
 
 // Load environment variables from .env file
 dotenv.config();
 
+const { MongoClient, ServerApiVersion } = pkg;
 const uri = process.env.MONGODB_URI;
 const client = new MongoClient(uri, {
   serverApi: {
