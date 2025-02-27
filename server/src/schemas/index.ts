@@ -1,6 +1,6 @@
 import { gql } from 'apollo-server-express';
 
-const typeDefs = gql`
+export const typeDefs = gql`
   type User {
     id: ID!
     username: String!
@@ -22,5 +22,3 @@ const typeDefs = gql`
     loginUser(email: String!, password: String!): AuthPayload!
   }
 `;
-
-export default typeDefs;

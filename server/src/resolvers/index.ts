@@ -5,7 +5,7 @@ import { UserController } from '../controllers/userController';
 const authController = new AuthController();
 const userController = new UserController();
 
-const resolvers: IResolvers = {
+export const resolvers: IResolvers = {
   Query: {
     getUser: async (_: any, { id }: { id: string }) => {
       return await userController.getUser(id);
@@ -23,5 +23,3 @@ const resolvers: IResolvers = {
     },
   },
 };
-
-export default resolvers;
