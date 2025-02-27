@@ -44,7 +44,9 @@ export const deleteUserHabit = async (userId, habitId) => {
 
 export const authenticateUser = async (credentials) => {
     try {
+        console.log('Authenticating user with credentials:', credentials); // Debugging: Log the credentials being sent
         const response = await axios.post(`${API_URL}/auth/login`, credentials);
+        console.log('Authentication response:', response); // Debugging: Log the response from the server
         return response.data;
     } catch (error) {
         console.error('Error authenticating user:', error);
