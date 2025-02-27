@@ -4,7 +4,10 @@ import dotenv from 'dotenv';
 // Load environment variables from .env file
 dotenv.config();
 
-const connectionString = process.env.MONGODB_URI;
+const username = process.env.MONGODB_USERNAME;
+const password = process.env.MONGODB_PASSWORD;
+const cluster = process.env.MONGODB_CLUSTER;
+const connectionString = `mongodb+srv://${username}:${password}@${cluster}/`;
 
 mongoose.connect(connectionString, {
     useNewUrlParser: true,
