@@ -6,6 +6,9 @@ export const registerUser = async (req, res) => {
     try {
         const { username, password, email } = req.body;
         console.log('Request body:', req.body); // Debugging: Log the request body
+        if (!username || !password || !email) {
+            return res.status(400).json({ message: 'Missing required fields' });
+        }
         const hashedPassword = await hashPassword(password);
         const newUser = new User({ username, password: hashedPassword, email });
         await newUser.save();
