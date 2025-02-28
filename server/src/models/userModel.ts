@@ -1,11 +1,11 @@
-import { Schema, model } from 'mongoose';
+import mongoose, { Document, Schema, model, CallbackError } from 'mongoose';
 import bcrypt from 'bcrypt';
 
-interface IUser {
+export interface IUser extends Document {
     username: string;
     email: string;
     password: string;
-    comparePassword(password: string): Promise<boolean>;
+    comparePassword(candidatePassword: string): Promise<boolean>;
 }
 
 const userSchema = new Schema<IUser>({
@@ -27,17 +27,23 @@ const userSchema = new Schema<IUser>({
     timestamps: true,
 });
 
+// Hash the password before saving the user
 userSchema.pre('save', async function (next) {
-    if (!this.isModified('password')) {
-        return next();
+    const user = this as IUser;
+    if (!user.isModified('password')) return next();
+
+    try {
+        const salt = await bcrypt.genSalt(10);
+        user.password = await bcrypt.hash(user.password, salt);
+        next();
+    } catch (error) {
+        next(error as CallbackError);
     }
-    const salt = await bcrypt.genSalt(10);
-    this.password = await bcrypt.hash(this.password, salt);
-    next();
 });
 
-userSchema.methods.comparePassword = function (password: string): Promise<boolean> {
-    return bcrypt.compare(password, this.password);
+// Method to compare passwords
+userSchema.methods.comparePassword = async function (candidatePassword: string) {
+    return bcrypt.compare(candidatePassword, this.password);
 };
 
 const User = model<IUser>('User', userSchema);
