@@ -5,7 +5,7 @@ class AuthService {
     private jwtSecret: string;
 
     constructor() {
-        this.jwtSecret = process.env.JWT_SECRET || 'your_jwt_secret'; // Replace with your secret
+        this.jwtSecret = process.env.JWT_SECRET || 'jwt_secret'; 
     }
 
     public async registerUser(username: string, email: string, password: string) {

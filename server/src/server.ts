@@ -55,3 +55,4 @@ app.get('*', (req, res) => {
 });
 
 app.post('/api/auth/register', (req, res) => authController.registerUser(req, res));
+app.post('/api/auth/login', (req, res) => authController.loginUser(req, res));
