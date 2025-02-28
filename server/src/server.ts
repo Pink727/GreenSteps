@@ -6,14 +6,8 @@ import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
 import dotenv from 'dotenv';
 
-// Load environment variables from .env file
-dotenv.config({ path: path.resolve(__dirname, '../../../.env') });
-
-// Explicitly set environment variables
-process.env.PORT = process.env.PORT || '4000';
-process.env.MONGODB_URI = process.env.MONGODB_URI || '';
-
-const PORT = process.env.PORT;
+dotenv.config();
+const PORT = process.env.PORT || '4000';
 const MONGODB_URI = process.env.MONGODB_URI;
 
 console.log('PORT:', PORT);
