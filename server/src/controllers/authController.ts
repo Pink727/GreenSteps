@@ -10,8 +10,9 @@ export class AuthController {
 
     public async registerUser(req: Request, res: Response): Promise<Response> {
         try {
-            const user = await this.authService.registerUser(req.body.email, req.body.password);
-            return res.status(201).json(user);
+            const { email, password } = req.body;
+            const token = await this.authService.registerUser(email, password);
+            return res.status(201).json({ token });
         } catch (error: any) { // Explicitly type the error
             return res.status(400).json({ message: error.message });
         }
@@ -26,3 +27,5 @@ export class AuthController {
         }
     }
 }
+
+export default new AuthController();

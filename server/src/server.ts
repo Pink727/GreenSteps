@@ -5,6 +5,7 @@ import path from 'path';
 import { typeDefs } from './schema';
 import { resolvers } from './resolvers';
 import dotenv from 'dotenv';
+import { registerUser } from './controllers/authController';
 
 dotenv.config();
 const PORT = process.env.PORT || '4000';
@@ -52,3 +53,5 @@ server.start().then(() => {
 app.get('*', (req, res) => {
   res.sendFile(path.join(__dirname, '../../client/build', 'index.html'));
 });
+
+app.post('/api/auth/register', registerUser);
