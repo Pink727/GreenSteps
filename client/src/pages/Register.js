@@ -10,9 +10,9 @@ const Register = () => {
     const handleSubmit = async (event) => {
         event.preventDefault();
         const userData = {
-            username: event.target.username.value,
-            password: event.target.password.value,
-            email: event.target.email.value,
+            username: username, // Ensure username is included
+            password: password,
+            email: email,
         };
 
         console.log("Submitting form with data:", userData);
