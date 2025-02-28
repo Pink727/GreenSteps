@@ -8,13 +8,13 @@ class AuthService {
         this.jwtSecret = process.env.JWT_SECRET || 'your_jwt_secret'; // Replace with your secret
     }
 
-    public async registerUser(email: string, password: string) {
+    public async registerUser(username: string, email: string, password: string) {
         const existingUser = await User.findOne({ email });
         if (existingUser) {
             throw new Error('User already exists');
         }
 
-        const user = new User({ email, password });
+        const user = new User({ username, email, password });
         await user.save();
         return this.generateToken(user);
     }
