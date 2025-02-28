@@ -11,9 +11,11 @@ export class AuthController {
     public async registerUser(req: Request, res: Response): Promise<Response> {
         try {
             const { email, password } = req.body;
+            console.log('Registering user with email:', email); // Debugging: Log the email
             const token = await this.authService.registerUser(email, password);
             return res.status(201).json({ token });
         } catch (error: any) { // Explicitly type the error
+            console.error('Error in registerUser:', error.message); // Debugging: Log the error message
             return res.status(400).json({ message: error.message });
         }
     }
