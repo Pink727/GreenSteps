@@ -1,4 +1,7 @@
 import React, { useState } from 'react';
+import { Link } from 'react-router-dom';
+import '/Activity.css';
+import React, { useState } from 'react';
 
 const Activity: React.FC = () => {
     const [selectedActivity, setSelectedActivity] = useState<string | null>(null);
