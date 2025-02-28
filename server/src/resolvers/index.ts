@@ -1,9 +1,7 @@
-import { IResolvers } from '@graphql-tools/utils';
-import { AuthController } from '../controllers/authController';
+import authController from '../controllers/authController';
 import { UserController } from '../controllers/userController';
 import { Request, Response } from 'express';
 
-const authController = new AuthController();
 const userController = new UserController();
 
 const createMockRequest = (params: any, body: any): Request => {
@@ -21,7 +19,7 @@ const createMockResponse = (): Response => {
   return res;
 };
 
-export const resolvers: IResolvers<any, any> = {
+export const resolvers = {
   Query: {
     getUser: async (_: any, { id }: { id: string }, context: any) => {
       const req = createMockRequest({ id }, null);
