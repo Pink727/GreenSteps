@@ -16,4 +16,19 @@ const registerUser = async (req: Request, res: Response): Promise<Response> => {
     }
 };
 
-export default { registerUser };
+const loginUser = async (req: Request, res: Response): Promise<Response> => {
+    try {
+        const { email, password } = req.body;
+        console.log('Received login data:', req.body); // Log the received data
+        if (!email || !password) {
+            throw new Error('Missing required fields');
+        }
+        const token = await authService.loginUser(email, password);
+        return res.status(200).json({ token });
+    } catch (error: any) {
+        console.error('Error in loginUser:', error.message);
+        return res.status(400).json({ message: error.message });
+    }
+};
+
+export default { registerUser, loginUser };

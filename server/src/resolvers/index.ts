@@ -8,7 +8,6 @@ const createMockRequest = (params: any, body: any): Request => {
   return {
     params,
     body,
-    // Add other properties and methods as needed
   } as Request;
 };
 
