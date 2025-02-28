@@ -1,5 +1,5 @@
-import { User } from '../models/userModel';
 import { IUser } from "../models/userModel";
+import User from "../models/userModel"; // Import User as the default export
 
 export class UserService {
     async createUser(userData: IUser): Promise<IUser> {
