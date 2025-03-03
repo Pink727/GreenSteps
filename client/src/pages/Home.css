@@ -44,7 +44,9 @@
 
 .image-placeholder {
     width: 60%;
-    height: 200px;
+    max-width: 100px;
+    height: auto;
+    max-height: 100px;
     background-color: #ddd;
     border-radius: 5px;
     margin-bottom: 10px;
