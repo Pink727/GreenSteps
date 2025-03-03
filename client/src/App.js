@@ -5,6 +5,7 @@ import Home from './pages/Home';
 import Profile from './components/Profile';
 import Navbar from './components/Navbar';
 import Activities from './components/Activities';
+import Footer from './components/Footer';
 import './styles.css';
 
 const App = () => {
@@ -17,6 +18,7 @@ const App = () => {
         <Route path="/profile" element={<Profile />} />
         <Route path="/Activities" element={<Activities />} />
       </Routes>
+      <Footer />
     </Router>
   );
 };
