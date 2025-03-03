@@ -1,10 +1,12 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
-import Login from './components/Login';
+import Login from './pages/Login';
 import Home from './pages/Home';
-import Profile from './components/Profile';
+import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
-import Activities from './components/Activities';
+import Activities from './pages/Activity';
+import Register from './pages/Register'; // Import Register component
+import Footer from './components/Footer';
 import './styles.css';
 
 const App = () => {
@@ -15,8 +17,10 @@ const App = () => {
         <Route path="/" element={<Home />} />
         <Route path="/login" element={<Login />} />
         <Route path="/profile" element={<Profile />} />
-        <Route path="/Activities" element={<Activities />} />
+        <Route path="/activities" element={<Activities />} />
+        <Route path="/register" element={<Register />} /> {/* Add Register route */}
       </Routes>
+      <Footer />
     </Router>
   );
 };

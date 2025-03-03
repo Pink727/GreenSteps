@@ -1,6 +1,4 @@
 nav {
-  position: fixed;
-  top: 0;
   width: 100%;
   background-color: #292c2f;
   z-index: 1000; /* Ensure the navbar is on top of other elements */
