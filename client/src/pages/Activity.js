@@ -14,6 +14,7 @@ const Activity = () => {
     };
 
     const handleDescriptionChange = (event) => {
+
         if (event.target.value.length <= 500) {
             setDescription(event.target.value);
         }
