@@ -1,4 +1,3 @@
-
 body {
     margin: 0;
     font-family: 'Arial', sans-serif;
@@ -17,6 +16,7 @@ header {
 
 main {
     padding: 20px;
+    padding-top: 70px; /* Add padding to the top to account for the header height */
 }
 
 

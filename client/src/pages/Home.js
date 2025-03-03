@@ -16,9 +16,6 @@ const Home = () => {
                 <h1>Welcome to GreenSteps</h1>
                 <p>Your one-stop shop for all things eco-friendly.</p>
               </div>
-            <div className="contact-us" style={{ position: 'absolute', bottom: 0, left: 0 }}>
-                <button onClick={handleContactUs}>Contact Us</button>
-            </div>
         </div>
     );
 };
