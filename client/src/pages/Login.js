@@ -1,41 +1,51 @@
 import React, { useState } from 'react';
+import { authenticateUser } from '../utils/API';
+import { setToken } from '../utils/auth';
+import { Link } from 'react-router-dom';
+import './Login.css';
 
-const Login = () => {
-    const [formState, setFormState] = useState({ username: '', password: '' });
+const Login: React.FC = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
 
-    const handleChange = (event) => {
-        const { name, value } = event.target;
-        setFormState({
-            ...formState,
-            [name]: value,
-        });
-    };
-
-    const handleFormSubmit = async (event) => {
+    const handleSubmit = async (event: React.FormEvent) => {
         event.preventDefault();
-        // Add login logic here
+        try {
+            const response = await authenticateUser({ email, password });
+            setToken(response.token);
+            console.log('Login successful');
+        } catch (error) {
+            console.error('Login failed:', error);
+        }
     };
 
     return (
-        <div>
+        <div className="login-container">
             <h2>Login</h2>
-            <form onSubmit={handleFormSubmit}>
-                <input
-                    name="username"
-                    type="text"
-                    placeholder="Username"
-                    value={formState.username}
-                    onChange={handleChange}
-                />
-                <input
-                    name="password"
-                    type="password"
-                    placeholder="Password"
-                    value={formState.password}
-                    onChange={handleChange}
-                />
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
+                </div>
+                <div>
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
+                </div>
                 <button type="submit">Login</button>
             </form>
+            <p>Don't have an account? <Link to="/register">Register</Link></p>
         </div>
     );
 };

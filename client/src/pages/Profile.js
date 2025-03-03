@@ -1,30 +1,22 @@
-import React, { useState } from 'react';
+import React from 'react';
+import './Profile.css';
 
-const Profile = () => {
-    const [ecoHabit, setEcoHabit] = useState('');
+interface ProfileProps {
+    username: string;
+    profilePicture: string;
+    points: number;
+}
 
-    const handleChange = (event) => {
-        setEcoHabit(event.target.value);
-    };
-
-    const handleFormSubmit = async (event) => {
-        event.preventDefault();
-        // Add logic to save ecoHabit
-    };
-
+const Profile: React.FC<ProfileProps> = ({ username, profilePicture, points }) => {
     return (
-        <div>
-            <h2>Profile</h2>
-            <form onSubmit={handleFormSubmit}>
-                <input
-                    name="ecoHabit"
-                    type="text"
-                    placeholder="Enter eco-friendly habit"
-                    value={ecoHabit}
-                    onChange={handleChange}
-                />
-                <button type="submit">Add Habit</button>
-            </form>
+        <div style={{ textAlign: 'center', marginTop: '50px' }}>
+            <img 
+                src={profilePicture} 
+                alt={`${username}'s profile`} 
+                style={{ borderRadius: '50%', width: '150px', height: '150px' }} 
+            />
+            <h1>{username}</h1>
+            <p>Points: {points}</p>
         </div>
     );
 };

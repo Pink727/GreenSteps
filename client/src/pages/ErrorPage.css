@@ -1,0 +1,19 @@
+.error-page {
+    background-color: #f8d7da; 
+    color: #721c24; 
+    padding: 20px;
+    border: 1px solid #f5c6cb; 
+    border-radius: 5px;
+    text-align: center;
+    margin: 20px;
+}
+
+.error-heading {
+    font-size: 28px;
+    font-weight: bold;
+}
+
+.error-message {
+    font-size: 16px;
+    margin-top: 10px;
+}

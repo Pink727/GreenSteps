@@ -2,13 +2,17 @@
   "name": "greensteps",
   "version": "1.0.0",
   "description": "A Sustainability & Eco-Friendly Lifestyle Tracker",
-  "main": "server/server.js",
+  "main": "server/src/server.ts",
+  "type": "module",
   "scripts": {
-    "start": "node server/server.js",
+    "start": "ts-node server/src/server.ts",
     "client": "npm start --prefix client",
-    "dev": "concurrently \"npm run client\" \"nodemon server/server.js\"",
+    "dev": "concurrently \"npm run client\" \"nodemon server/src/server.ts\"",
     "build": "npm run build --prefix client",
-    "test": "echo \"No tests specified\" && exit 0"
+    "test": "echo \"No tests specified\" && exit 0",
+    "cypress:open": "cypress open",
+    "cypress:run": "cypress run",
+    "install": "cd client && npm install && cd ../server && npm install"
   },
   "keywords": [
     "sustainability",
@@ -17,9 +21,10 @@
     "mern",
     "graphql"
   ],
-  "author": "Your Name",
+  "author": "Pink727",
   "license": "MIT",
   "dependencies": {
+    "apollo-server-express": "^2.19.0",
     "bcrypt": "^5.0.1",
     "concurrently": "^6.0.0",
     "cors": "^2.8.5",
@@ -27,10 +32,12 @@
     "express": "^4.17.1",
     "graphql": "^15.5.0",
     "jsonwebtoken": "^8.5.1",
-    "mongoose": "^5.10.9",
-    "apollo-server-express": "^2.19.0"
+    "mongoose": "^5.10.9"
   },
   "devDependencies": {
-    "nodemon": "^2.0.7"
+    "cypress": "^9.0.0",
+    "nodemon": "^2.0.7",
+    "ts-node": "^10.0.0",
+    "typescript": "^4.3.2"
   }
 }
