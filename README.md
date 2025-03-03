@@ -19,7 +19,13 @@ A gamified app where users track eco-friendly habits (e.g., using public transpo
 - [Usage](#usage)
 - [API Endpoints](#api-endpoints)
 - [Contributing](#contributing)
-- [License](#license)
+- [Deployed Webpage](#deployed-webpage)
+
+## Deployed Webpage
+![GreenSteps](assets/image.png)
+
+
+You can access the deployed application at [GreenSteps](https://greensteps-u62w.onrender.com/).
 
 ## Installation
 1. Clone the repository:
@@ -59,31 +65,9 @@ A gamified app where users track eco-friendly habits (e.g., using public transpo
 - `POST /api/auth/register`: Register a new user.
 - `POST /api/auth/login`: Login a user.
 
-### Habits
-- `GET /api/habits`: Get all habits.
-- `POST /api/habits`: Create a new habit.
-- `PUT /api/habits/:id`: Update a habit.
-- `DELETE /api/habits/:id`: Delete a habit.
-
 ### Points
 - `GET /api/points`: Get user points.
 - `POST /api/points`: Add points for a user.
-
-## Contributing
-1. Fork the repository.
-2. Create a new branch:
-    ```sh
-    git checkout -b feature/your-feature-name
-    ```
-3. Commit your changes:
-    ```sh
-    git commit -m 'Add some feature'
-    ```
-4. Push to the branch:
-    ```sh
-    git push origin feature/your-feature-name
-    ```
-5. Open a pull request.
 
 ## License
 This project is licensed under the MIT License - see the LICENSE file for details.

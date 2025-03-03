@@ -9,21 +9,13 @@ const Home = () => {
 
     return (
         <div className="home">
-            <header>
-                <nav>
-                    <ul>
-                        <li><Link to="/activity">Activity</Link></li>
-                        <li><Link to="/rewards">Rewards</Link></li>
-                        <li><Link to="/login">Login</Link></li>
-                    </ul>
-                </nav>
-            </header>
             <div className="image-placeholder">
-                {/* Image will go here */}
+                <img src="https://images.unsplash.com/photo-1497321697169-1ca9f1c8a253?q=80&w=1335&auto=format&fit=crop&ixlib=rb-4.0.3&ixid=M3wxMjA3fDB8MHxwaG90by1wYWdlfHx8fGVufDB8fHx8fA%3D%3D" alt="Placeholder" />
             </div>
-            <div className="gps">
-                {/* GPS component will go here */}
-            </div>
+            <div className="home-content">
+                <h1>Welcome to GreenSteps</h1>
+                <p>Your one-stop shop for all things eco-friendly.</p>
+              </div>
             <div className="contact-us" style={{ position: 'absolute', bottom: 0, left: 0 }}>
                 <button onClick={handleContactUs}>Contact Us</button>
             </div>

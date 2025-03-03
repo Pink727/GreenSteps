@@ -1,19 +1,26 @@
 import React from 'react';
-import { BrowserRouter as Router, Route, Switch } from 'react-router-dom';
+import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
+import Login from './components/Login';
 import Home from './pages/Home';
+import Profile from './pages/Profile';
+import Navbar from './components/Navbar';
+import Activities from './pages/Activity';
+import Footer from './components/Footer';
 import './styles.css';
 
-function App() {
-    return (
-        <Router>
-            <div className="App">
-                <Switch>
-                    <Route exact path="/" component={Home} />
-                    {/* Add more routes as needed */}
-                </Switch>
-            </div>
-        </Router>
-    );
-}
+const App = () => {
+  return (
+    <Router>
+      <Navbar />
+      <Routes>
+        <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
+        <Route path="/profile" element={<Profile />} />
+        <Route path="/Activities" element={<Activities />} />
+      </Routes>
+      <Footer />
+    </Router>
+  );
+};
 
 export default App;

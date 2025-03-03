@@ -1,7 +1,6 @@
 import React, { useState } from 'react';
 import { Link } from 'react-router-dom';
 import './Activity.css';
-import React, { useState } from 'react';
 
 const Activity = () => {
     const [selectedActivity, setSelectedActivity] = useState(null);
@@ -14,7 +13,6 @@ const Activity = () => {
     };
 
     const handleDescriptionChange = (event) => {
-
         if (event.target.value.length <= 500) {
             setDescription(event.target.value);
         }
@@ -27,7 +25,6 @@ const Activity = () => {
 
     return (
         <main>
-            {/*activity section*/}
             <section className="activity">
                 <h1 className="activity-heading">Activity</h1>
                 <p className="activity-paragraph">Here are all the different ways you can contribute to bettering your planet!</p>
