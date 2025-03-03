@@ -1,5 +1,11 @@
 import React from "react";
 import "./Footer.css";
+import GithubIcon from "../assets/Github.png";
+import InstagramIcon from "../assets/Instagram.png";
+import LinkedInIcon from "../assets/LinkedIn.png";
+import TwitterIcon from "../assets/Twitter.png";
+import FacebookIcon from "../assets/Facebook.png";
+
 
 const Footer = () => {
   return (
@@ -8,10 +14,12 @@ const Footer = () => {
      <div className="intro">
        <h5 className="contact">Contact Us</h5> 
         <ul className="connections">
-        <li className="nav-item"><img src="Facebook.png" alt="Facebook" width="24" height="24"/></li>
-          <li className="nav-item"><img src="Twitter.png" alt="Twitter" width="24" height="24"/></li>
-          <li className="nav-item"><img src="Github.png" alt="GitHub" width="24" height="24"/></li>
-          <li className="nav-item"><img src="Instagram.png" alt="Instagram" width="24" height="24" /></li> 
+        <li className="nav-item"><img src= {FacebookIcon} alt="Facebook" width="24" height="24"/></li>
+          <li className="nav-item"><img src={TwitterIcon} alt="Twitter" width="24" height="24"/></li>
+          <li className="nav-item"><img src={GithubIcon} alt="GitHub" width="24" height="24"/></li>
+          <li className="nav-item"><img src={InstagramIcon} alt="Instagram" width="24" height="24" /></li> 
+          <li className="nav-item"><img src={LinkedInIcon} alt="LinkedIn" width="24" height="24"/></li>
+
         </ul>
      </div>
        <div className="contact-group">
