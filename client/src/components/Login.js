@@ -16,6 +16,7 @@ const Login = () => {
             const response = await authenticateUser({ email, password });
             setToken(response.token);
             console.log('Login successful');
+            console.log('Navigating to home page'); // Debugging statement
             navigate('/'); // Redirect to home page
         } catch (error) {
             console.error('Login failed:', error);
