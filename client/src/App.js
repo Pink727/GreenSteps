@@ -4,7 +4,7 @@ import Login from './components/Login';
 import Home from './pages/Home';
 import Profile from './pages/Profile';
 import Navbar from './components/Navbar';
-import Activities from './components/Activities';
+import Activities from './pages/Activities';
 import Footer from './components/Footer';
 import './styles.css';
 
