@@ -1,6 +1,13 @@
+nav {
+  position: fixed;
+  top: 0;
+  width: 100%;
+  background-color: #292c2f;
+  z-index: 1000; /* Ensure the navbar is on top of other elements */
+}
+
 ul {
-  display:flex;
-  flex-wrap: wrap;
+  display: flex;
   justify-content: center;
   align-items: center;
   list-style-type: none;
@@ -11,27 +18,24 @@ ul {
 }
 
 li {
-display: flex;
-align-items: center;
-flex-wrap: wrap;
-  float: left;
+  display: flex;
+  align-items: center;
+  flex-wrap: wrap;
 }
 
-li a {
+li a, li button {
   display: block;
   color: white;
-  justify-content: center;
   text-align: center;
   padding: 20px 35px;
   text-decoration: none;
+  background: none;
+  border: none;
+  cursor: pointer;
 }
 
-li a:hover {
-  display: block;
+li a:hover, li button:hover {
   color: #d1d2d2;
-  text-align: center;
-  padding: 20px 35px;
-  text-decoration: none;
   box-shadow: 0 0 10px 0 rgba(255, 255, 255, 0.2);
 }
 
