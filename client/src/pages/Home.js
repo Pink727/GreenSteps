@@ -16,6 +16,14 @@ const Home = () => {
                 <h1>Welcome to GreenSteps</h1>
                 <p>Your one-stop shop for all things eco-friendly.</p>
               </div>
+
+              <div className="pitch">
+              <p>There has been an overflow of issues due to the world's pollution that can affect our climates, way of living, our environment. We do our own parts by recycling, picking up our own trash, taking different forms of transportation and with GreenSteps we can make those activities benefit you personally. We add a rewards system that count up all your environmental friendly challenges so you can receive small prizes. </p>
+              </div>
+            <div className="contact-us" style={{ position: 'absolute', bottom: 0, left: 0 }}>
+                <button onClick={handleContactUs}>Contact Us</button>
+            </div>
+
         </div>
     );
 };
