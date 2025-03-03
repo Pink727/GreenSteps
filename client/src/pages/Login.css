@@ -1,3 +1,7 @@
+body{
+    margin: 200px 0px 0px 20px;
+    }
+
 .login {
     background-color: #f9f9f9;
     padding: 40px;
@@ -6,7 +10,7 @@
     max-width: 400px;
     margin: auto;
 }
-
+ 
 .login-heading {
     font-size: 28px;
     color: #333;
