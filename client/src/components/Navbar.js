@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import { getToken, removeToken } from "../utils/auth"; // Import getToken and removeToken
 import logo from "../assets/GreenSteps_Logo.png";
+import './Navbar.css'; // Import the CSS file
 
 const Navbar = () => {
   const [isLoggedIn, setIsLoggedIn] = useState(false);
