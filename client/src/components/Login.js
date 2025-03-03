@@ -1,34 +1,55 @@
-import React from "react";
-import  "./Login.css";
+import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom'; // Import useNavigate
+import { authenticateUser } from '../utils/API';
+import { setToken } from '../utils/auth';
+import { Link } from 'react-router-dom';
+import './Login.css';
 
 const Login = () => {
+    const [email, setEmail] = useState('');
+    const [password, setPassword] = useState('');
+    const navigate = useNavigate(); // Initialize useNavigate
+
+    const handleSubmit = async (event) => {
+        event.preventDefault();
+        try {
+            const response = await authenticateUser({ email, password });
+            setToken(response.token);
+            console.log('Login successful');
+            navigate('/'); // Redirect to home page
+        } catch (error) {
+            console.error('Login failed:', error);
+        }
+    };
+
     return (
-        <>
-            <h2 style={{ textAlign: "center" }}>Login</h2>
-            <form action="/action_page.php" method="post">
-                <div className="imgcontainer">
-                    <img src="GreenSteps_Logo.png" alt="Logo" className="Logo" />
+        <div className="login-container">
+            <h2>Login</h2>
+            <form onSubmit={handleSubmit}>
+                <div>
+                    <label htmlFor="email">Email:</label>
+                    <input
+                        type="email"
+                        id="email"
+                        value={email}
+                        onChange={(e) => setEmail(e.target.value)}
+                        required
+                    />
                 </div>
-
-                <div className="container">
-                    <label htmlFor="uname"><b>Username</b></label>
-                    <input type="text" placeholder="Enter Username" name="uname" required />
-
-                    <label htmlFor="psw"><b>Password</b></label>
-                    <input type="password" placeholder="Enter Password" name="psw" required />
-
-                    <button type="submit">Login</button>
-                    <label>
-                        <input type="checkbox" checked="checked" name="remember" /> Remember me
-                    </label>
+                <div>
+                    <label htmlFor="password">Password:</label>
+                    <input
+                        type="password"
+                        id="password"
+                        value={password}
+                        onChange={(e) => setPassword(e.target.value)}
+                        required
+                    />
                 </div>
-
-                <div className="container" style={{ backgroundColor: "#f1f1f1" }}>
-                    <button type="button" className="cancelbtn">Cancel</button>
-                    <span className="psw">Forgot <a href="#">password?</a></span>
-                </div>
+                <button type="submit">Login</button>
             </form>
-        </>
+            <p>Don't have an account? <Link to="/register">Register</Link></p>
+        </div>
     );
 };
 
