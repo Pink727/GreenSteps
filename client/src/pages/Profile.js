@@ -6,7 +6,6 @@ const Profile = () => {
     const [points, setPoints] = useState(0);
 
     useEffect(() => {
-        // Fetch user data from an API or local storage
         const fetchUserData = async () => {
             const userData = await fetch('/api/user').then(res => res.json());
             setUsername(userData.username);

@@ -1,6 +1,6 @@
 import axios from 'axios';
 
-const API_URL = 'https://greensteps-u62w.onrender.com/api'; // Adjust this to your server's URL if needed
+const API_URL = 'https://greensteps-u62w.onrender.com/api'; 
 
 export const getUserHabits = async (userId) => {
     try {
